@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block banner %}
+
+  <div id="index-banner">
+    <div class="section no-pad-bot">
+      <div class="container center-align">
+        <h1 class="header blue-text">#{{ genre }}</h1> <!-- Seçilen türün başlık olarak yazması = #action gibi -->
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+{% block content %}
+      <!--   Icon Section   -->
+      <div class="row">
+
+        {% for movie in movie_data %}
+          <div class="col s12 m5"> <!-- Çıkan sonuçtaki resim boyutu ayarlama = m5 gibi -->
+            <div class="card">
+              <div class="card-image">
+                <a href="{% url 'movie-details' movie.imdbID %}"><img src="{{ movie.Poster.url }}"></a> <!-- Filmin detay sayfasına yönlendiren film posteri -->
+              </div>
+              <div class="card-content">
+                <!-- Filmin altında yazan bilgiler-->
+                <span class="card-title"><b>{{ movie.Title }}</b></span>
+                <p class="right"><i class="material-icons">date_range</i>{{ movie.Year }}</p>
+                <p><b>{{ movie.Type }}</b></p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+
+          <div class="col s12 m12 center-align">
+          <!-- Önceki ve Sonraki sayfaya gitmek için button -->
+          {% if movie_data.has_pervious %}
+            <a  href="?page={{ movie_data.pervious_page_number }}" class="waves-effect waves-light btn"><i class="material-icons left">arrow_back</i>Back</a>
+          {% endif %}
+
+          {% if movie_data.has_next %}
+            <a  href="?page={{ movie_data.next_page_number }}" class="waves-effect waves-light btn"><i class="material-icons left">add</i>Load more</a>
+          {% endif %}
+          <div>
+
+      </div>
+
+    </div>
+  </div>
+{% endblock %}

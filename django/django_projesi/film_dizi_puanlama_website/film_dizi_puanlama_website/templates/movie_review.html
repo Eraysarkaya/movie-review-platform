@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+      <!--   Icon Section   -->
+      <div class="row">
+        <!--   Film Detayları   -->
+        <div class="col s12 m12">
+          <div class="card horizontal">
+            <div class="card-image">
+              <a href="{% url 'movie-details' movie.imdbID %}"><img src="{{ movie.Poster.url }}"></a>
+            </div>
+            <div class="card-stacked">
+              <div class="card-content">
+                <span class="card-title"><b>{{ movie.Title }}</b></span>
+                <span>{{ movie.Type }}</span>
+                <br>
+                <p>{{ movie.Plot }}</p>
+                <br>
+                <div class="divider"></div> <!--   Satırlar arasına düz çizgi   -->
+
+                <!--   İnceleme Sayfasındaki Verilen Puan  -->
+                <div class="col s12 m12"> <!--   İnceleme yazısının yandaki gösterimi   -->
+                  <div class="card-panel grey lighten-5 z-depth-1">
+                    <div class="row valign-wrapper">
+                      <div class="col s4 center-align"> <!--   profil poto boyut   -->
+
+                      {% if review.user.profile.picture %}
+                        <img src="{{ review.user.profile.picture.url }}" alt="" class="circle responsive-img">
+                      {% else %}
+                        <img src="{% static 'img/no_avatar.jpg' %}" alt="" class="circle responsive-img">
+                      {% endif %}
+
+                        <p><b>{{ review.user.profile.first_name }} {{ review.user.profile.last_name }}</b></p>
+                      </div>
+                      <div class="col s8"> <!--   profil yazı boyutu   -->
+                        <h5>Rated</h5>
+                        <h5>{{ review.rate }} / 10</h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!--   İnceleme Yazısı  -->
+      <h4>Rewiew</h4>
+      <div class="divider"></div>
+
+
+        <div class="row">
+          <div class="col s12 m12">
+            <div class="card">
+              <div class="card-content">
+                <span class="card-title"><b>{{ review.user.profile.first_name }} {{ review.user.profile.last_name }}</b><span class="right">Review<i class="material-icons right">rate_review</i></span></span>
+                <p>{{ review.date }}</p>
+                <br>
+                <p>{{ review.text }}</p>
+              </div>
+                <div class="card-action"> <!--  İnceleme Yazısı Like ve Dislike buttonu  -->
+                  <a href="{% url 'user-review-like' review.user.username movie.imdbID %}"><i class="material-icons">thumb_up</i>{{ review.likes }}</a>
+                  <a href="{% url 'user-review-unlike' review.user.username movie.imdbID %}"><i class="material-icons">thumb_down</i>{{ review.unlikes }}</a>
+                </div>
+            </div>
+          </div>
+        </div>
+
+        <!--   İnceleme sayfasının altındaki Yorumlar  -->
+        <h4>Comments</h4>
+        <div class="divider"></div>
+      
+        <div class="col s12 m12">
+          <div class="card">
+            <div class="card-content">
+             <ul class="collection">
+  
+              {% for comment in comments %}
+                <li class="collection-item avatar">
+  
+                      {% if comment.user.profile.picture %}
+                        <img src="{{ comment.user.profile.picture.url }}" alt="" class="circle responsive-img">
+                      {% else %}
+                        <img src="{% static 'img/no_avatar.jpg' %}" alt="" class="circle responsive-img">
+                      {% endif %}
+  
+                  <span class="title">
+                    <a href="{% url 'profile' comment.user.username %}">
+                        <b>{{ comment.user.profile.first_name }} {{ comment.user.profile.last_name }}</b>
+                    </a>
+                  </span>
+                  <p>{{ comment.date }}</p>
+                  <br>
+                  {{ comment.body }}
+                  <!--   Yorum Silme  -->
+                    {% if request.user == comment.user %}
+                        <form action="{% url 'delete_comment' comment.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" name="action" class="secondary-content"><i class="material-icons red-text">delete_forever</i></button>
+                        </form>
+                    {% endif %}
+  
+                </li>
+              {% endfor %}
+  
+            </ul>
+  
+            </div>
+              <!--   Yorum Yazma yeri ve buttonu -->
+              <div class="card-action">
+                <form method="post" action="" role="form" class="col s12">
+                  {% csrf_token %}
+                    <div class="input-field col s12">
+                      {{ form.body }}
+                      <label for="textarea1">Comment</label>
+                    </div>
+                    <button type="submit" name="action" class="waves-effect waves-light btn"><i class="material-icons left">send</i>Send</button>
+                </form>
+            </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

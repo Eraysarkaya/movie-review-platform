@@ -1,0 +1,93 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>RateFlix</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+
+<!-- Logo Banner -->
+<!-- Dropdown Structure -->
+<ul id="dropdown1" class="dropdown-content">
+  <!-- Kullanıcı eğer giriş yapmışsa gözüken seçenekler -->
+  {% if user.is_authenticated %}
+    <li><a class="black indigo-text" style="font-family: 'Arial';" href="{% url 'profile' user.username %}">Profile</a></li>
+    <li><a class="black indigo-text" style="font-family: 'Arial';" href="{% url 'change-password' %}">Change Password</a></li>
+    <li class="divider"></li>
+    <li><a class="black indigo-text" style="font-family: 'Arial';" href="{% url 'logout' %}">Logout</a></li>
+  {% endif %}
+</ul> 
+<nav class="grey darken-4"> <!-- Logo Banner Renk -->
+  <div class="nav-wrapper">
+    <a href="{% url 'index' %}" class="brand-logo indigo-text" style="font-family: 'Arial', sans-serif; font-size: 35px;"><b>RateFlix</b></a>
+    <ul class="right hide-on-med-and-down">
+    <!-- Dropdown Trigger -->
+    <!-- Kullanıcı eğer giriş yapmışsa gözüken seçenekler -->
+    {% if user.is_authenticated %}
+      <li><a class="dropdown-trigger black indigo-text" href="#!" data-target="dropdown1" style="font-family: 'Arial';" >{{ user.username }}<i class="material-icons right">arrow_drop_down</i></a>
+    <!-- Kullanıcı eğer giriş yapmamışsa gözüken seçenekler -->
+    {% else %}
+      <li><a class="black indigo-text" style="font-family: 'Arial';" href="{% url 'login' %}">Login</a></li>
+      <li><a class="black indigo-text" style="font-family: 'Arial';" href="{% url 'signup' %}">Sign in</a></li>
+    {% endif %}
+
+      </li>
+    </ul>
+  </div>
+</nav>
+
+{% block banner %}
+{% endblock %}
+
+  <div class="container">
+    <div class="section">
+
+      {% block content %}
+      {% endblock %}
+
+    </div>
+  </div>
+
+  <!-- Sosyal medya ve Seçenkeler ilgili linkli seçenekler  -->
+  <footer class="page-footer grey darken-4">
+    <div class="container">
+      <div class="row">
+        <div class="col l2 s12">
+          <h5 class=" indigo-text">Settings</h5>
+          <ul>
+            <li><a class="white-text" href="{% url 'index' %}" >Home Page</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class=" indigo-text">Connect</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Facebook</a></li>
+            <li><a class="white-text" href="#!">Twitter</a></li>
+            <li><a class="white-text" href="#!">Instegram</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+
+      </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="{% static 'js/materialize.js' %}"></script>
+  <script src="{% static 'js/init.js' %}"></script>
+
+  </body>
+</html>

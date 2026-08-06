@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Bundled virtual environment from the original coursework archive
+django/django_projesi/Include/
+django/django_projesi/Lib/
+django/django_projesi/Scripts/
+django/django_projesi/pyvenv.cfg
+
+# Secrets and runtime data
+.env
+*.sqlite3
+django/django_projesi/film_dizi_puanlama_website/media/
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

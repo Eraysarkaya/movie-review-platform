@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block banner %}
+  <div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <div class="row center">
+          <h1  class="header center teal-text" style="font-family: 'Arial'" >Find your favorite movie and series</h1> <!-- Movie Banner Text  -->
+            <div class="row">
+            <!-- Search seçeneği -->
+            <form class="col s12">
+              <div class="row">
+                <div class="input-field col s12">
+                  <textarea type="submit" id="textarea1" name="q" value="{{ request.GET.q }}" class="materialize-textarea white-text"></textarea> <!-- Search Textarea  -->
+                  <label class="grey-text" for="textarea1">Search</label><!-- Search renk -->
+                </div>
+                <button type="submit" name="action" class="waves-effect waves-light btn"><i class="material-icons left">search</i>Search</button> <!-- Search Button  -->
+              </div>
+            </form>
+          </div>
+        </div>
+        <br><br>
+      </div>
+    </div>
+    <div class="parallax"><img src="{% static 'img/breakingbad.jpg' %}" alt="Unsplashed background img 1"></div> <!-- Arkaplan resmi -->
+  </div>
+{% endblock %}
+
+
+{% block content %}
+      <!--   Icon Section   -->
+      <!--   Resmin altındaki siteyle ilgili kısa yazı ve ikonlar   -->
+      <div class="row">
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center blue-text"><i class="material-icons">movie</i></h2>
+            <h5 class="center" >Find your favorite movies and series</h5>
+
+            <p class="light" style="font-family: 'Arial'">
+                <p>"Discover movies and series"</p>
+                "Detailed information about movies and series"</p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center red-text"><i class="material-icons">library_add</i></h2>
+            <h5 class="center">Create watchlist and more</h5>
+
+            <p class="light" style="font-family: 'Arial'">
+              <p>"Build your watchlist and explore more"</p>
+              "Create watchlist and discover more"</p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center orange-text"><i class="material-icons">rate_review</i></h2>
+            <h5 class="center">Review your favorite movies and series</h5>
+
+            <p class="light" style="font-family: 'Arial'">
+              <p>"Rate your favorite movies and series"</p>
+              "Review your favorite movies and series"</p>
+          </div>
+        </div>
+      </div>
+
+{% endblock %}
