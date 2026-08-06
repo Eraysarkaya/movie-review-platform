@@ -45,7 +45,9 @@ The test suite covers model slug creation and the credential-safe OMDb client, i
 
 ## Screenshots
 
-The privacy-safe screenshot checklist and expected filenames are documented in `docs/screenshots/README.md`.
+![RateFlix home](docs/screenshots/01-home.png)
+
+![Login screen](docs/screenshots/02-login.png)
 
 ## Repository hygiene
 

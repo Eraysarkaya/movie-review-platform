@@ -1,9 +1,8 @@
 # Screenshots
 
-Add three privacy-safe PNG files from the running application here:
+Privacy-safe screenshots captured from the running application:
 
-- `01-search-results.png`
-- `02-movie-details.png`
-- `03-profile-or-watchlist.png`
+- `01-home.png`
+- `02-login.png`
 
 Use demo accounts and avoid personally identifying profile images.
