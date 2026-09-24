@@ -1,64 +1,39 @@
 # Movie Review Platform
 
-A Django learning project for discovering movies and series through OMDb, keeping watch lists, rating titles and writing reviews. It shows a complete web workflow with authentication and local data persistence.
+Film ve dizileri OMDb üzerinden arayıp izleme listeleri oluşturmak, puan vermek ve yorum yazmak için geliştirilmiş Django web uygulaması. Kimlik doğrulama, kullanıcı profilleri ve yerel veritabanı akışını gösteren bir öğrenme projesidir.
 
-## Features
+## Özellikler
 
-- Search and paginate movies and series from the OMDb API
-- Movie details, genres, actors, posters, and external ratings
-- Registration, login, profiles, and profile pictures
-- Watched and watch-later collections
-- Ratings, reviews, comments, likes, and dislikes
-- Django admin and SQLite persistence for local development
+- OMDb üzerinden film ve dizi arama; sayfalama ve detay sayfaları
+- Kayıt, giriş, profil ve profil resmi
+- İzlenenler ve daha sonra izlenecekler listesi
+- Puan, inceleme, yorum ve beğeni işlemleri
+- Django yönetim paneli
 
-## Stack
+**Teknolojiler:** Python, Django 5, SQLite, Requests, Pillow, Materialize CSS.
 
-Python, Django 5, SQLite, Requests, Pillow, Materialize CSS
+## Ekran görüntüleri
 
-## Setup
+| Ana sayfa | Giriş |
+| --- | --- |
+| ![RateFlix ana sayfası](docs/screenshots/01-home.png) | ![Giriş ekranı](docs/screenshots/02-login.png) |
+
+## Yerel kurulum
 
 ```bash
 python -m venv .venv
-.venv\Scripts\activate
+source .venv/bin/activate
 pip install -r requirements.txt
 cd django/django_projesi/film_dizi_puanlama_website
-copy .env.example .env
+cp .env.example .env
 python manage.py migrate
 python manage.py runserver
 ```
 
-On macOS/Linux, activate with `source .venv/bin/activate` and use `cp` instead of `copy`.
+Windows'ta sanal ortamı `.venv\Scripts\activate` ile açın ve `cp` yerine `copy` kullanın. OMDb sağlayıcısından bir API anahtarı alıp `.env` içindeki `OMDB_API_KEY` değerini doldurun; ayrıca farklı bir `DJANGO_SECRET_KEY` belirleyin. Uygulama: `http://127.0.0.1:8000/movie/`.
 
-Create an OMDb key at the provider's website and set `OMDB_API_KEY` in the local `.env`. Never commit that file. Set a unique `DJANGO_SECRET_KEY` as well.
+Testler için aynı dizinde `python manage.py check` ve `python manage.py test` çalıştırın. Yerel veritabanı, API anahtarları ve yüklenen kullanıcı dosyaları Git'e eklenmemelidir.
 
-Open `http://127.0.0.1:8000/movie/`.
+## Lisans
 
-## Tests
-
-```bash
-cd django/django_projesi/film_dizi_puanlama_website
-python manage.py check
-python manage.py test
-```
-
-The test suite covers model slug creation and the credential-safe OMDb client, including missing configuration and mocked API requests.
-
-## Screenshots
-
-![RateFlix home](docs/screenshots/01-home.png)
-
-![Login screen](docs/screenshots/02-login.png)
-
-## Repository hygiene
-
-The original coursework archive contained a Windows virtual environment, local database, poster cache, and test profile pictures. These are excluded from version control. A clean clone recreates its database with Django migrations.
-
-## Security notes
-
-- Secrets are read from environment variables.
-- Network requests use a timeout and present a safe error when OMDb is unavailable.
-- Runtime databases and uploaded user media must never contain real personal data in a public portfolio repository.
-
-## License
-
-MIT
+MIT.
