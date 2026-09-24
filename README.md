@@ -1,6 +1,6 @@
 # Movie Review Platform
 
-A Django full-stack application for discovering movies and series through OMDb, maintaining watch lists, rating titles, writing reviews, and interacting with other users.
+A Django learning project for discovering movies and series through OMDb, keeping watch lists, rating titles and writing reviews. It shows a complete web workflow with authentication and local data persistence.
 
 ## Features
 
