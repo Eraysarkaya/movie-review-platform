@@ -1,6 +1,6 @@
 # Movie Review Platform
 
-Film ve dizileri OMDb üzerinden arayıp izleme listeleri oluşturmak, puan vermek ve yorum yazmak için geliştirilmiş Django web uygulaması. Kimlik doğrulama, kullanıcı profilleri ve yerel veritabanı akışını gösteren bir öğrenme projesidir.
+İzlediğiniz filmleri ve dizileri kaydedebileceğiniz, izleme listenizi tutabileceğiniz ve başkalarıyla puan ile yorum paylaşabileceğiniz web uygulaması. Yapımlar OMDb üzerinden aranır; listeler, profiller ve değerlendirmeler uygulamanın veritabanında tutulur. Django ile geliştirilmiş bir öğrenme projesidir.
 
 ## Özellikler
 
